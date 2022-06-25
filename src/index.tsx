@@ -5,6 +5,7 @@ import { HashRouter } from 'react-router-dom';
 import 'index.css';
 
 import AppRoutes from 'components/AppRoutes';
+import IntlWrapper from 'components/IntlWrapper';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <AppRoutes />
+      <IntlWrapper>
+        <AppRoutes />
+      </IntlWrapper>
     </HashRouter>
   </React.StrictMode>,
 );

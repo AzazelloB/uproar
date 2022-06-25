@@ -8,6 +8,7 @@ import { SiNintendogamecube } from 'react-icons/si';
 
 import Accordion from 'ui/Accordion';
 
+import { FormattedMessage } from 'react-intl';
 import DarkModeSwitch from './DarkModeSwitch';
 
 const Sidebar: React.FC = () => {
@@ -63,7 +64,12 @@ const Sidebar: React.FC = () => {
           alt=""
           className="bg-primary w-10 p-1 mr-4 rounded-md"
         />
-        <span>UPROAR</span>
+        <span>
+          <FormattedMessage
+            id="sidebar.logo.title"
+            defaultMessage="UPROAR"
+          />
+        </span>
         <span
           className={classNames(
             'rounded-md ml-2 px-3',

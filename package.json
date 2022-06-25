@@ -23,6 +23,7 @@
     "react-animate-height": "^3.0.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
+    "react-intl": "^6.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.7.4",
@@ -34,7 +35,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "messages:extract": "NODE_ENV=development extract-messages -l=en,ru -o src/translations/messages -d en --flat false 'src/**/!(*.test).{ts,tsx}' --flat",
+    "messages:compile": "formatjs compile-folder --ast  src/translations/messages src/translations/compiled --format src/translations/formatter.js"
   },
   "eslintConfig": {
     "extends": [
@@ -55,7 +58,9 @@
     ]
   },
   "devDependencies": {
+    "@formatjs/cli": "^5.0.2",
     "autoprefixer": "^10.4.7",
+    "extract-react-intl-messages": "^4.1.1",
     "gh-pages": "^4.0.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4"
