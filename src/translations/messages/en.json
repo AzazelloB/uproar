@@ -1,3 +1,24 @@
 {
-  "sidebar.logo.title": "UPROAR"
+  "dark_mode_switcher.sr": "Enable dark mode",
+  "game_card.accept": "Accept",
+  "header.links.about": "About",
+  "header.links.faq": "FAQ",
+  "header.links.support": "Support",
+  "header.login": "Login",
+  "sidebar.category.action": "Action",
+  "sidebar.category.adventure": "Adventure",
+  "sidebar.category.casual": "Casual",
+  "sidebar.category.intellectual": "Intellectual",
+  "sidebar.category.sports": "Sports",
+  "sidebar.category.strategy": "Strategy",
+  "sidebar.dark_mode": "Dark Mode",
+  "sidebar.game_tile_mode": "My games.",
+  "sidebar.logo.beta": "beta",
+  "sidebar.logo.title": "UPROAR",
+  "sidebar.nav.all_games": "All Games",
+  "sidebar.nav.categories": "Categories",
+  "sidebar.nav.games": "Games",
+  "sidebar.nav.most_played": "Most Played",
+  "sidebar.nav.new": "New!",
+  "sidebar.nav.recommended": "Recommended"
 }

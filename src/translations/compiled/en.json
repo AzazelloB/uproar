@@ -1,8 +1,134 @@
 {
+  "dark_mode_switcher.sr": [
+    {
+      "type": 0,
+      "value": "Enable dark mode"
+    }
+  ],
+  "game_card.accept": [
+    {
+      "type": 0,
+      "value": "Accept"
+    }
+  ],
+  "header.links.about": [
+    {
+      "type": 0,
+      "value": "About"
+    }
+  ],
+  "header.links.faq": [
+    {
+      "type": 0,
+      "value": "FAQ"
+    }
+  ],
+  "header.links.support": [
+    {
+      "type": 0,
+      "value": "Support"
+    }
+  ],
+  "header.login": [
+    {
+      "type": 0,
+      "value": "Login"
+    }
+  ],
+  "sidebar.category.action": [
+    {
+      "type": 0,
+      "value": "Action"
+    }
+  ],
+  "sidebar.category.adventure": [
+    {
+      "type": 0,
+      "value": "Adventure"
+    }
+  ],
+  "sidebar.category.casual": [
+    {
+      "type": 0,
+      "value": "Casual"
+    }
+  ],
+  "sidebar.category.intellectual": [
+    {
+      "type": 0,
+      "value": "Intellectual"
+    }
+  ],
+  "sidebar.category.sports": [
+    {
+      "type": 0,
+      "value": "Sports"
+    }
+  ],
+  "sidebar.category.strategy": [
+    {
+      "type": 0,
+      "value": "Strategy"
+    }
+  ],
+  "sidebar.dark_mode": [
+    {
+      "type": 0,
+      "value": "Dark Mode"
+    }
+  ],
+  "sidebar.game_tile_mode": [
+    {
+      "type": 0,
+      "value": "My games."
+    }
+  ],
+  "sidebar.logo.beta": [
+    {
+      "type": 0,
+      "value": "beta"
+    }
+  ],
   "sidebar.logo.title": [
     {
       "type": 0,
       "value": "UPROAR"
+    }
+  ],
+  "sidebar.nav.all_games": [
+    {
+      "type": 0,
+      "value": "All Games"
+    }
+  ],
+  "sidebar.nav.categories": [
+    {
+      "type": 0,
+      "value": "Categories"
+    }
+  ],
+  "sidebar.nav.games": [
+    {
+      "type": 0,
+      "value": "Games"
+    }
+  ],
+  "sidebar.nav.most_played": [
+    {
+      "type": 0,
+      "value": "Most Played"
+    }
+  ],
+  "sidebar.nav.new": [
+    {
+      "type": 0,
+      "value": "New!"
+    }
+  ],
+  "sidebar.nav.recommended": [
+    {
+      "type": 0,
+      "value": "Recommended"
     }
   ]
 }

@@ -1,3 +1,24 @@
 {
-  "sidebar.logo.title": ""
+  "dark_mode_switcher.sr": "Включить темную тему",
+  "game_card.accept": "Принять",
+  "header.links.about": "О проекте",
+  "header.links.faq": "FAQ",
+  "header.links.support": "Поддержка",
+  "header.login": "Войти",
+  "sidebar.category.action": "Экшен",
+  "sidebar.category.adventure": "Приключения",
+  "sidebar.category.casual": "Казуальные",
+  "sidebar.category.intellectual": "Интеллектуальные",
+  "sidebar.category.sports": "Спорт",
+  "sidebar.category.strategy": "Стратегии",
+  "sidebar.dark_mode": "Темная тема",
+  "sidebar.game_tile_mode": "Мои игры",
+  "sidebar.logo.beta": "бета",
+  "sidebar.logo.title": "UPROAR",
+  "sidebar.nav.all_games": "Все игры",
+  "sidebar.nav.categories": "Категории",
+  "sidebar.nav.games": "Игры",
+  "sidebar.nav.most_played": "Самые играемые",
+  "sidebar.nav.new": "Новое!",
+  "sidebar.nav.recommended": "Рекомендуемые"
 }

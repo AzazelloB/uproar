@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { GiBroadsword, GiChessRook } from 'react-icons/gi';
 import { IoIosRocket } from 'react-icons/io';
 import { HiPuzzle } from 'react-icons/hi';
@@ -13,34 +13,36 @@ import DarkModeSwitch from './DarkModeSwitch';
 import GameTileSwitch from './GameTileSwitch';
 
 const Sidebar: React.FC = () => {
+  const intl = useIntl();
+
   const categories = [
     {
-      label: 'Action',
+      label: intl.formatMessage({ id: 'sidebar.category.action', defaultMessage: 'Action' }),
       icon: GiBroadsword,
       link: 'action',
     },
     {
-      label: 'Adventure',
+      label: intl.formatMessage({ id: 'sidebar.category.adventure', defaultMessage: 'Adventure' }),
       icon: IoIosRocket,
       link: 'adventure',
     },
     {
-      label: 'Casual',
+      label: intl.formatMessage({ id: 'sidebar.category.casual', defaultMessage: 'Casual' }),
       icon: HiPuzzle,
       link: 'casual',
     },
     {
-      label: 'Strategy',
+      label: intl.formatMessage({ id: 'sidebar.category.strategy', defaultMessage: 'Strategy' }),
       icon: GiChessRook,
       link: 'strategy',
     },
     {
-      label: 'Intellectual',
+      label: intl.formatMessage({ id: 'sidebar.category.intellectual', defaultMessage: 'Intellectual' }),
       icon: SiNintendogamecube,
       link: 'intellectual',
     },
     {
-      label: 'Sports',
+      label: intl.formatMessage({ id: 'sidebar.category.sports', defaultMessage: 'Sports' }),
       icon: FaVolleyballBall,
       link: 'sports',
     },
@@ -77,16 +79,32 @@ const Sidebar: React.FC = () => {
             'bg-black/10 text-black/70 dark:bg-white/20 dark:text-text-dark',
           )}
         >
-          beta
+          <FormattedMessage
+            id="sidebar.logo.beta"
+            defaultMessage="beta"
+          />
         </span>
       </div>
 
       <nav className="border-b border-black/25 dark:border-white/25 py-6">
-        <Accordion initialOpen label="Games" className="px-9">
+        <Accordion
+          initialOpen
+          label={intl.formatMessage({ id: 'sidebar.nav.games', defaultMessage: 'Games' })}
+          className="px-9"
+        >
           <ul className="space-y-3 mt-4">
-            <li className="px-9">All Games</li>
+            <li className="px-9">
+              <FormattedMessage
+                id="sidebar.nav.all_games"
+                defaultMessage="All Games"
+              />
+            </li>
             <li>
-              <Accordion initialOpen label="Categories" className="px-9">
+              <Accordion
+                initialOpen
+                label={intl.formatMessage({ id: 'sidebar.nav.categories', defaultMessage: 'Categories' })}
+                className="px-9"
+              >
                 <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
                   {categories.map(({ label, icon: Icon, link }) => (
                     <li key={link} className="w-full">
@@ -113,9 +131,24 @@ const Sidebar: React.FC = () => {
                 </ul>
               </Accordion>
             </li>
-            <li className="px-9">Recommended</li>
-            <li className="px-9">New!</li>
-            <li className="px-9">Most Played</li>
+            <li className="px-9">
+              <FormattedMessage
+                id="sidebar.nav.recommended"
+                defaultMessage="Recommended"
+              />
+            </li>
+            <li className="px-9">
+              <FormattedMessage
+                id="sidebar.nav.new"
+                defaultMessage="New!"
+              />
+            </li>
+            <li className="px-9">
+              <FormattedMessage
+                id="sidebar.nav.most_played"
+                defaultMessage="Most Played"
+              />
+            </li>
           </ul>
         </Accordion>
       </nav>
@@ -123,7 +156,10 @@ const Sidebar: React.FC = () => {
       <GameTileSwitch />
 
       <div className="mt-auto px-9 mb-9 flex justify-between items-center">
-        Dark mode
+        <FormattedMessage
+          id="sidebar.dark_mode"
+          defaultMessage="Dark Mode"
+        />
         <DarkModeSwitch />
       </div>
     </aside>

@@ -1,4 +1,134 @@
 {
+  "dark_mode_switcher.sr": [
+    {
+      "type": 0,
+      "value": "Включить темную тему"
+    }
+  ],
+  "game_card.accept": [
+    {
+      "type": 0,
+      "value": "Принять"
+    }
+  ],
+  "header.links.about": [
+    {
+      "type": 0,
+      "value": "О проекте"
+    }
+  ],
+  "header.links.faq": [
+    {
+      "type": 0,
+      "value": "FAQ"
+    }
+  ],
+  "header.links.support": [
+    {
+      "type": 0,
+      "value": "Поддержка"
+    }
+  ],
+  "header.login": [
+    {
+      "type": 0,
+      "value": "Войти"
+    }
+  ],
+  "sidebar.category.action": [
+    {
+      "type": 0,
+      "value": "Экшен"
+    }
+  ],
+  "sidebar.category.adventure": [
+    {
+      "type": 0,
+      "value": "Приключения"
+    }
+  ],
+  "sidebar.category.casual": [
+    {
+      "type": 0,
+      "value": "Казуальные"
+    }
+  ],
+  "sidebar.category.intellectual": [
+    {
+      "type": 0,
+      "value": "Интеллектуальные"
+    }
+  ],
+  "sidebar.category.sports": [
+    {
+      "type": 0,
+      "value": "Спорт"
+    }
+  ],
+  "sidebar.category.strategy": [
+    {
+      "type": 0,
+      "value": "Стратегии"
+    }
+  ],
+  "sidebar.dark_mode": [
+    {
+      "type": 0,
+      "value": "Темная тема"
+    }
+  ],
+  "sidebar.game_tile_mode": [
+    {
+      "type": 0,
+      "value": "Мои игры"
+    }
+  ],
+  "sidebar.logo.beta": [
+    {
+      "type": 0,
+      "value": "бета"
+    }
+  ],
   "sidebar.logo.title": [
+    {
+      "type": 0,
+      "value": "UPROAR"
+    }
+  ],
+  "sidebar.nav.all_games": [
+    {
+      "type": 0,
+      "value": "Все игры"
+    }
+  ],
+  "sidebar.nav.categories": [
+    {
+      "type": 0,
+      "value": "Категории"
+    }
+  ],
+  "sidebar.nav.games": [
+    {
+      "type": 0,
+      "value": "Игры"
+    }
+  ],
+  "sidebar.nav.most_played": [
+    {
+      "type": 0,
+      "value": "Самые играемые"
+    }
+  ],
+  "sidebar.nav.new": [
+    {
+      "type": 0,
+      "value": "Новое!"
+    }
+  ],
+  "sidebar.nav.recommended": [
+    {
+      "type": 0,
+      "value": "Рекомендуемые"
+    }
   ]
 }
