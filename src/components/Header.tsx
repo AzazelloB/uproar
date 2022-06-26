@@ -10,17 +10,17 @@ const Header: React.FC = () => {
         <ul className="flex space-x-7">
           <li>
             <Link to="/faq">
-              <FormattedMessage id="nav.links.faq" defaultMessage="FAQ" />
+              <FormattedMessage id="header.links.faq" defaultMessage="FAQ" />
             </Link>
           </li>
           <li>
             <Link to="/about">
-              <FormattedMessage id="nav.links.about" defaultMessage="About" />
+              <FormattedMessage id="header.links.about" defaultMessage="About" />
             </Link>
           </li>
           <li>
             <Link to="/support">
-              <FormattedMessage id="nav.links.support" defaultMessage="Support" />
+              <FormattedMessage id="header.links.support" defaultMessage="Support" />
             </Link>
           </li>
         </ul>
