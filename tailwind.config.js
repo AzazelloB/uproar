@@ -14,7 +14,7 @@ module.exports = {
           DEFAULT: '#FF4738',
         },
         'bg-dark': {
-          DEFAULT: '#9CA5EC0A',
+          DEFAULT: '#383A4C',
           page: '#343646',
         },
         'bg-light': {
@@ -23,7 +23,7 @@ module.exports = {
         },
         'text-dark': {
           DEFAULT: '#FFFFFF',
-          300: '#FFFFFF80',
+          300: '#9C9DA6',
         },
         'text-light': {
           DEFAULT: '#000000',

@@ -1,5 +1,7 @@
 import { IntlProvider } from 'react-intl';
 
+import { useGlobalContext } from 'context/GlobalContext';
+
 import messagesRu from 'translations/compiled/ru.json';
 import messagesEn from 'translations/compiled/en.json';
 
@@ -13,7 +15,7 @@ interface IntlWrapperProps {
 }
 
 const IntlWrapper: React.FC<IntlWrapperProps> = ({ children }) => {
-  const locale = navigator.language.split('-')[0];
+  const { locale } = useGlobalContext();
 
   return (
     <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="en">
