@@ -4,9 +4,10 @@ import classNames from 'classnames';
 interface SwitchProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
+  srOnly?: string;
 }
 
-const Switch: React.FC<SwitchProps> = ({ checked, onChange }) => {
+const Switch: React.FC<SwitchProps> = ({ checked, onChange, srOnly }) => {
   return (
     <HeadlessSwitch
       checked={checked}
@@ -21,7 +22,7 @@ const Switch: React.FC<SwitchProps> = ({ checked, onChange }) => {
         },
       )}
     >
-      <span className="sr-only">Enable dark mode</span>
+      {srOnly && <span className="sr-only">{srOnly}</span>}
       <span
         className={classNames(
           'h-4 w-4 rounded-full bg-white',
