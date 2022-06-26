@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/uproar/static/css/main.e342a3de.css",
-    "main.js": "/uproar/static/js/main.1961b222.js",
+    "main.js": "/uproar/static/js/main.d445d00e.js",
     "index.html": "/uproar/index.html",
     "main.e342a3de.css.map": "/uproar/static/css/main.e342a3de.css.map",
-    "main.1961b222.js.map": "/uproar/static/js/main.1961b222.js.map"
+    "main.d445d00e.js.map": "/uproar/static/js/main.d445d00e.js.map"
   },
   "entrypoints": [
     "static/css/main.e342a3de.css",
-    "static/js/main.1961b222.js"
+    "static/js/main.d445d00e.js"
   ]
 }
