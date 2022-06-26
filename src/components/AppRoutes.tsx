@@ -1,6 +1,9 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
 
 import HomePage from 'pages';
+import LoginPage from 'pages/auth/login';
+import CallbackPage from 'pages/auth/login/callback';
+import LogoutPage from 'pages/auth/logout';
 import CategoryPage from 'pages/category';
 import FAQPage from 'pages/faq';
 import AboutPage from 'pages/about';
@@ -13,6 +16,14 @@ const AppRoutes: React.FC = () => {
     {
       path: '/',
       element: <Layout><HomePage /></Layout>,
+    },
+    {
+      path: '/auth',
+      children: [
+        { path: 'login', element: <LoginPage /> },
+        { path: 'login/callback', element: <CallbackPage /> },
+        { path: 'logout', element: <LogoutPage /> },
+      ],
     },
     {
       path: '/category/:category',

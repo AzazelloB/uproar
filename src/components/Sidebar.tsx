@@ -57,7 +57,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-[280px] flex flex-col bg-bg-light dark:bg-bg-dark">
+    <aside className="w-[280px] flex flex-col flex-shrink-0 bg-bg-light dark:bg-bg-dark">
       <div className="flex items-center h-16 border-b border-black/25 dark:border-white/25 px-9">
         <img
           src={`${process.env.PUBLIC_URL}/images/logo.svg`}
