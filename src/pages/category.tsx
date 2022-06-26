@@ -1,8 +1,13 @@
 import useTopGames from 'api/topGames';
+import { useGlobalContext } from 'context/GlobalContext';
+
+import GamesGrid from 'components/GamesGrid';
+import GamesList from 'components/GamesList';
 
 const CategoryPage: React.FC = () => {
+  const { gameTileMode } = useGlobalContext();
   const { data, isLoading, isIdle } = useTopGames({
-    firts: 10,
+    first: gameTileMode === 'grid' ? 16 : 8,
   });
 
   if (isLoading || isIdle) {
@@ -11,16 +16,7 @@ const CategoryPage: React.FC = () => {
 
   const games = data!.data!.data;
 
-  return (
-    <div className="flex flex-wrap">
-      {games.map((game) => (
-        <div key={game.id}>
-          <h1>{game.name}</h1>
-          <img src={game.box_art_url.replace('{width}x{height}', '200x300')} alt="" />
-        </div>
-      ))}
-    </div>
-  );
+  return gameTileMode === 'grid' ? <GamesGrid games={games} /> : <GamesList games={games} />;
 };
 
 export default CategoryPage;

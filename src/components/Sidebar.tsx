@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import { GiBroadsword, GiChessRook } from 'react-icons/gi';
 import { IoIosRocket } from 'react-icons/io';
 import { HiPuzzle } from 'react-icons/hi';
@@ -8,8 +9,8 @@ import { SiNintendogamecube } from 'react-icons/si';
 
 import Accordion from 'ui/Accordion';
 
-import { FormattedMessage } from 'react-intl';
 import DarkModeSwitch from './DarkModeSwitch';
+import GameTileSwitch from './GameTileSwitch';
 
 const Sidebar: React.FC = () => {
   const categories = [
@@ -118,6 +119,8 @@ const Sidebar: React.FC = () => {
           </ul>
         </Accordion>
       </nav>
+
+      <GameTileSwitch />
 
       <div className="mt-auto px-9 mb-9 flex justify-between items-center">
         Dark mode

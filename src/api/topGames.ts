@@ -5,12 +5,12 @@ import { api } from 'api';
 import { useAuthContext } from 'context/AuthContext';
 
 interface SearchParams {
-  firts?: number;
+  first?: number;
   after?: string;
   before?: string;
 }
 
-interface Game {
+export interface Game {
   id: string;
   name: string;
   box_art_url: string;
@@ -27,6 +27,7 @@ const useTopGames = (params: SearchParams) => {
     () => api.get('https://api.twitch.tv/helix/games/top', { params }),
     {
       enabled: apiAccessTokenAdded,
+      keepPreviousData: true,
     },
   );
 };
