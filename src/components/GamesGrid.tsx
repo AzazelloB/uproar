@@ -10,7 +10,7 @@ const GamesGrid: React.FC<GamesGridProps> = ({ games }) => {
   return (
     <div className="flex flex-wrap gap-5">
       {games.map((game) => (
-        <GameCard game={game} />
+        <GameCard key={game.id} game={game} />
       ))}
     </div>
   );

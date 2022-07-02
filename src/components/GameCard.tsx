@@ -10,8 +10,12 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
   return (
-    <div key={game.id} className="bg-bg-light dark:bg-bg-dark w-[125px] rounded-md flex flex-col">
-      <img src={game.box_art_url.replace('{width}x{height}', '125x200')} alt="" />
+    <div className="bg-bg-light dark:bg-bg-dark max-w-[250px] rounded-md flex flex-col">
+      <img
+        className="w-full h-[140px] object-cover"
+        src={game.box_art_url.replace('{width}x{height}', '125x200')}
+        alt=""
+      />
 
       <div className="py-4 h-full flex flex-col">
         <h4 className="px-4">{game.name}</h4>

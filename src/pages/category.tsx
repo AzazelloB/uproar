@@ -7,7 +7,7 @@ import GamesList from 'components/GamesList';
 const CategoryPage: React.FC = () => {
   const { gameTileMode } = useGlobalContext();
   const { data, isLoading, isIdle } = useTopGames({
-    first: gameTileMode === 'grid' ? 16 : 8,
+    first: gameTileMode === 'grid' ? 16 : 4,
   });
 
   if (isLoading || isIdle) {
