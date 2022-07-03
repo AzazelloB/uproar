@@ -5,7 +5,7 @@ import { useAuthContext } from 'context/AuthContext';
 
 interface SearchParams {
   query: string;
-  firts?: number;
+  first?: number;
   after?: string;
 }
 

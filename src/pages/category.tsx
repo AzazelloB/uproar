@@ -1,12 +1,16 @@
-import useTopGames from 'api/topGames';
+import { useParams } from 'react-router-dom';
+
+import useSearch from 'api/search';
 import { useGlobalContext } from 'context/GlobalContext';
 
 import GamesGrid from 'components/GamesGrid';
 import GamesList from 'components/GamesList';
 
 const CategoryPage: React.FC = () => {
+  const { category } = useParams();
   const { gameTileMode } = useGlobalContext();
-  const { data, isLoading, isIdle } = useTopGames({
+  const { data, isLoading, isIdle } = useSearch({
+    query: category as string,
     first: gameTileMode === 'grid' ? 16 : 4,
   });
 
