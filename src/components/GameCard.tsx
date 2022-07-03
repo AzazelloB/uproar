@@ -13,7 +13,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
     <div className="bg-bg-light dark:bg-bg-dark max-w-[250px] rounded-md flex flex-col">
       <img
         className="w-full h-[140px] object-cover"
-        src={game.box_art_url.replace('{width}x{height}', '125x200')}
+        src={game.box_art_url.replace('52x72', '125x200')}
         alt=""
       />
 
