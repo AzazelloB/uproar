@@ -4,11 +4,13 @@ import { AsProp } from 'utils/asPropType';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary',
+  icon?: React.ElementType,
 }
 
 const Button = <T extends React.ElementType = 'button'>({
   as,
   children,
+  icon: Icon,
   variant,
   className,
   ...props
@@ -18,17 +20,21 @@ const Button = <T extends React.ElementType = 'button'>({
   return (
     <Component
       type={Component === 'button' ? 'button' : undefined}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       className={classNames(
         className,
-        'px-6 py-2 rounded-md font-medium disabled:bg-link-300 disabled:border-link-300 disabled:text-white',
+        'py-2 rounded-md font-medium disabled:bg-link-300 disabled:border-link-300 disabled:text-white',
         {
+          'px-6': !!children,
+          'px-2': !children,
           'bg-primary text-white hover:bg-primary-500': variant === 'primary',
-          'bg-white text-link border border-white hover:border-primary hover:text-primary': variant === 'secondary',
+          'border dark:border-white/25': variant === 'secondary',
+          'bg-bg-light dark:bg-transparent': variant === 'secondary',
+          'hover:bg-white/50 dark:hover:bg-white/20': variant === 'secondary',
         },
       )}
     >
+      {Icon && <Icon />}
       {children}
     </Component>
   );
