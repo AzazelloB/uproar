@@ -1,10 +1,9 @@
-import { useQuery, UseQueryResult } from 'react-query';
-import { AxiosResponse } from 'axios';
+import { useInfiniteQuery } from 'react-query';
 
 import { api } from 'api';
 import { useAuthContext } from 'context/AuthContext';
 
-import type { Game } from './response';
+import type { SearchResponse } from './response';
 
 interface SearchParams {
   query: string;
@@ -15,11 +14,24 @@ interface SearchParams {
 const useSearch = (params: SearchParams) => {
   const { apiAccessTokenAdded } = useAuthContext();
 
-  return useQuery<UseQueryResult<AxiosResponse<Game[]>>>(
+  return useInfiniteQuery<SearchResponse>(
     ['search', params],
-    () => api.get('https://api.twitch.tv/helix/search/categories', { params }),
+    async ({ pageParam }) => {
+      const response = await api.get(
+        'https://api.twitch.tv/helix/search/categories',
+        {
+          params: {
+            ...params,
+            after: pageParam,
+          },
+        },
+      );
+
+      return response.data;
+    },
     {
       enabled: apiAccessTokenAdded,
+      getNextPageParam: (response: any) => response.pagination.cursor,
     },
   );
 };

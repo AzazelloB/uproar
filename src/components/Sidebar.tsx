@@ -7,6 +7,8 @@ import { HiPuzzle } from 'react-icons/hi';
 import { FaVolleyballBall } from 'react-icons/fa';
 import { SiNintendogamecube } from 'react-icons/si';
 
+import { SIDEBAR_WIDTH } from 'constants/layout';
+
 import Accordion from 'ui/Accordion';
 
 import DarkModeSwitch from './DarkModeSwitch';
@@ -60,7 +62,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-[280px] flex flex-col flex-shrink-0 bg-bg-light dark:bg-bg-dark">
+    <aside className={`w-[${SIDEBAR_WIDTH}px] flex flex-col flex-shrink-0 bg-bg-light dark:bg-bg-dark`}>
       <div className="flex items-center h-16 border-b border-black/25 dark:border-white/25 px-9">
         <img
           src={`${process.env.PUBLIC_URL}/images/logo.svg`}

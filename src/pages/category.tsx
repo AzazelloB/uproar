@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import type { Game } from 'api/response';
 import useSearch from 'api/search';
 import { useGlobalContext } from 'context/GlobalContext';
 
@@ -10,20 +12,44 @@ const CategoryPage: React.FC = () => {
   const { category } = useParams();
   const { gameTileMode } = useGlobalContext();
 
-  const initialAmoutOfTilesOnScreen = gameTileMode === 'grid' ? 16 : 4;
+  const cardsPerPage = gameTileMode === 'grid' ? 8 : 4;
 
-  const { data, isLoading, isIdle } = useSearch({
+  const {
+    data,
+    isLoading,
+    isIdle,
+    fetchNextPage,
+    hasNextPage,
+  } = useSearch({
     query: category as string,
-    first: initialAmoutOfTilesOnScreen,
+    first: cardsPerPage,
   });
 
-  let games = [...Array(initialAmoutOfTilesOnScreen)];
+  useEffect(() => {
+    if (!isIdle && !isLoading) {
+      fetchNextPage();
+    }
+  }, [isIdle, isLoading, fetchNextPage]);
+
+  let prefilledData: ReturnType<typeof useSearch>['data'] = {
+    pageParams: [],
+    pages: [
+      {
+        data: [...Array(cardsPerPage)] as Game[],
+        pagination: {
+          cursor: '',
+        },
+      },
+    ],
+  };
 
   if (!isLoading && !isIdle) {
-    games = data!.data!.data;
+    prefilledData = data!;
   }
 
-  return gameTileMode === 'grid' ? <GamesGrid games={games} /> : <GamesList games={games} />;
+  return gameTileMode === 'grid'
+    ? <GamesGrid data={prefilledData} fetchNextPage={fetchNextPage} hasNextPage={!!hasNextPage} />
+    : <GamesList data={prefilledData} fetchNextPage={fetchNextPage} cardsPerPage={cardsPerPage} />;
 };
 
 export default CategoryPage;

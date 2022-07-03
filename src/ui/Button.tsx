@@ -23,7 +23,8 @@ const Button = <T extends React.ElementType = 'button'>({
       {...props}
       className={classNames(
         className,
-        'py-2 rounded-md font-medium disabled:bg-link-300 disabled:border-link-300 disabled:text-white',
+        'py-2 rounded-md font-medium',
+        'disabled:opacity-50 disabled:pointer-events-none',
         {
           'px-6': !!children,
           'px-2': !children,

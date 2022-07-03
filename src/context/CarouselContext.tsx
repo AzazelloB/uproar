@@ -4,19 +4,30 @@ import { createContext } from 'utils/contextCreator';
 
 function useCarouselState() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [totalSlidesCount, setTotalSlidesCount] = useState(0);
+  const hasNextSlide = currentSlideIndex < totalSlidesCount - 1;
+  const hasPrevSlide = currentSlideIndex > 0;
 
   const nextSlide = () => {
-    setCurrentSlideIndex((prev) => prev + 1);
+    if (hasNextSlide) {
+      setCurrentSlideIndex((prev) => prev + 1);
+    }
   };
 
   const prevSlide = () => {
-    setCurrentSlideIndex((prev) => prev - 1);
+    if (hasPrevSlide) {
+      setCurrentSlideIndex((prev) => prev - 1);
+    }
   };
 
   return {
     currentSlideIndex,
     nextSlide,
     prevSlide,
+    totalSlidesCount,
+    setTotalSlidesCount,
+    hasNextSlide,
+    hasPrevSlide,
   };
 }
 

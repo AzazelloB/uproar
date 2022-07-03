@@ -4,15 +4,22 @@ import { AsProp } from 'utils/asPropType';
 const CarouselPrev = <T extends React.ElementType = 'button'>({
   as,
   children,
+  onClick,
   ...props
 }: AsProp<T>) => {
-  const { prevSlide } = useCarouselContext();
+  const { currentSlideIndex, prevSlide, hasPrevSlide } = useCarouselContext();
 
   const Component = as || 'button';
 
+  const handleClick = () => {
+    onClick(currentSlideIndex);
+    prevSlide();
+  };
+
   return (
     <Component
-      onClick={prevSlide}
+      onClick={handleClick}
+      disabled={!hasPrevSlide}
       {...props}
     >
       {children}

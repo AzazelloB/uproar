@@ -6,3 +6,10 @@ export interface Game {
     cursor: string;
   };
 }
+
+export interface SearchResponse {
+  data: Game[];
+  pagination: {
+    cursor: string;
+  };
+}

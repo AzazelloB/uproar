@@ -1,7 +1,7 @@
 const GameCardSkeleton: React.FC = () => {
   return (
     <div
-      className="animate-pulse bg-bg-light dark:bg-bg-dark max-w-[250px] rounded-md flex flex-col"
+      className="animate-pulse bg-bg-light dark:bg-bg-dark min-w-[230px] max-w-[250px] rounded-md flex flex-col"
     >
       <div className="w-full h-[140px] bg-black/10 dark:bg-white/10" />
 
