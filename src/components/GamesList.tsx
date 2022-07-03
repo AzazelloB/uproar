@@ -1,7 +1,6 @@
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-import { Game } from 'api/topGames';
-
+import type { Game } from 'api/response';
 import Carousel from 'ui/Carousel';
 import Button from 'ui/Button';
 
@@ -20,8 +19,8 @@ const GamesList: React.FC<GamesListProps> = ({ games }) => {
       </div>
 
       <Carousel.Body>
-        {games.map((game) => (
-          <GameCard key={game.id} game={game} />
+        {games.map((game, i) => (
+          <GameCard key={game?.id || i} game={game} />
         ))}
       </Carousel.Body>
     </Carousel>

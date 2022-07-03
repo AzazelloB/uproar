@@ -1,4 +1,4 @@
-import { Game } from 'api/topGames';
+import type { Game } from 'api/response';
 
 import GameCard from './GameCard';
 

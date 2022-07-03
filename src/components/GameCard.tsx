@@ -1,14 +1,21 @@
-import { Game } from 'api/topGames';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import type { Game } from 'api/response';
+
 import Button from 'ui/Button';
+
+import GameCardSkeleton from './GameCardSkeleton';
 
 interface GameCardProps {
   game: Game;
 }
 
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
+  if (!game) {
+    return <GameCardSkeleton />;
+  }
+
   return (
     <div className="bg-bg-light dark:bg-bg-dark max-w-[250px] rounded-md flex flex-col">
       <img
@@ -29,7 +36,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
           Deal 5000 damage to enemies with grenades.
         </p>
 
-        <div className="p-4 pb-0 mt-auto border-t border-black/25 dark:border-white/25">
+        <div className="p-4 pb-0 mt-auto border-t border-black/25 dark:border-white/25 flex justify-end">
           <Button>
             <FormattedMessage
               id="game_card.accept"

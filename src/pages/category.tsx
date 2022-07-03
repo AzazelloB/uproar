@@ -9,16 +9,19 @@ import GamesList from 'components/GamesList';
 const CategoryPage: React.FC = () => {
   const { category } = useParams();
   const { gameTileMode } = useGlobalContext();
+
+  const initialAmoutOfTilesOnScreen = gameTileMode === 'grid' ? 16 : 4;
+
   const { data, isLoading, isIdle } = useSearch({
     query: category as string,
-    first: gameTileMode === 'grid' ? 16 : 4,
+    first: initialAmoutOfTilesOnScreen,
   });
 
-  if (isLoading || isIdle) {
-    return <div>Loading...</div>;
-  }
+  let games = [...Array(initialAmoutOfTilesOnScreen)];
 
-  const games = data!.data!.data;
+  if (!isLoading && !isIdle) {
+    games = data!.data!.data;
+  }
 
   return gameTileMode === 'grid' ? <GamesGrid games={games} /> : <GamesList games={games} />;
 };

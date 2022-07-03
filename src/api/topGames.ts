@@ -4,19 +4,12 @@ import { AxiosResponse } from 'axios';
 import { api } from 'api';
 import { useAuthContext } from 'context/AuthContext';
 
+import type { Game } from './response';
+
 interface SearchParams {
   first?: number;
   after?: string;
   before?: string;
-}
-
-export interface Game {
-  id: string;
-  name: string;
-  box_art_url: string;
-  pagination: {
-    cursor: string;
-  };
 }
 
 const useTopGames = (params: SearchParams) => {
