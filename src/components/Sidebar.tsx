@@ -69,146 +69,159 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <Transition
-      show={showSidebar}
-      enter="transition-all duration-75"
-      enterFrom="transform w-0 overflow-hidden"
-      enterTo={`transform w-[${SIDEBAR_WIDTH}px]`}
-      leave="transition-all duration-150"
-      leaveFrom={`transform w-[${SIDEBAR_WIDTH}px]`}
-      leaveTo="transform w-0 overflow-hidden"
-    >
-      <div className={`w-[${SIDEBAR_WIDTH}px] h-full flex-shrink-0`} />
+    <>
+      <Transition
+        show={showSidebar}
+        className={`w-[${SIDEBAR_WIDTH}px] h-full flex-shrink-0`}
+        enter="transition-all duration-75"
+        enterFrom="w-0"
+        enterTo={`w-[${SIDEBAR_WIDTH}px]`}
+        leave="transition-all duration-150"
+        leaveFrom={`w-[${SIDEBAR_WIDTH}px]`}
+        leaveTo="w-0"
+      />
 
-      <aside className={classNames(
-        'fixed top-0 left-0 bottom-0 overflow-y-auto',
-        `w-[${SIDEBAR_WIDTH}px] flex flex-col flex-shrink-0 bg-bg-light dark:bg-bg-dark`,
-      )}
+      <Transition
+        show={showSidebar}
+        className="fixed top-0 bottom-0 z-10"
+        enter="transition-all duration-75"
+        enterFrom="-left-full"
+        enterTo="left-0"
+        leave="transition-all duration-150"
+        leaveFrom="left-0"
+        leaveTo="-left-full"
       >
-        <div className="flex items-center flex-shrink-0 h-16 border-b border-black/25 dark:border-white/25 px-9">
-          <img
-            src={`${process.env.PUBLIC_URL}/images/logo.svg`}
-            alt=""
-            className="bg-primary h-7 p-1 mr-4 rounded-md"
-          />
-          <span>
-            <FormattedMessage
-              id="sidebar.logo.title"
-              defaultMessage="UPROAR"
+        <aside className={classNames(
+          `h-full w-[${SIDEBAR_WIDTH}px] overflow-y-auto`,
+          'flex flex-col flex-shrink-0 bg-bg-light dark:bg-bg-dark',
+        )}
+        >
+          <div className="flex items-center flex-shrink-0 h-16 border-b border-black/25 dark:border-white/25 px-9">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/logo.svg`}
+              alt=""
+              className="bg-primary h-7 p-1 mr-4 rounded-md"
             />
-          </span>
-          <span
-            className={classNames(
-              'rounded-md ml-2 px-3',
-              'bg-black/10 text-black/70 dark:bg-white/20 dark:text-text-dark',
-            )}
-          >
+            <span>
+              <FormattedMessage
+                id="sidebar.logo.title"
+                defaultMessage="UPROAR"
+              />
+            </span>
+            <span
+              className={classNames(
+                'rounded-md ml-2 px-3',
+                'bg-black/10 text-black/70 dark:bg-white/20 dark:text-text-dark',
+              )}
+            >
+              <FormattedMessage
+                id="sidebar.logo.beta"
+                defaultMessage="beta"
+              />
+            </span>
+          </div>
+
+          <nav className="border-b border-black/25 dark:border-white/25 py-6">
+            <ul className="space-y-3 mt-4">
+              <li>
+                <Accordion
+                  label={intl.formatMessage({ id: 'sidebar.nav.games', defaultMessage: 'Games' })}
+                  className="px-9"
+                >
+                  <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
+                    {data?.data?.data.map(({ id, name, box_art_url: imgUrl }) => (
+                      <li key={id} className="w-full">
+                        <Link
+                          to="/"
+                          className={classNames(
+                            'flex items-center',
+                            'pl-9 py-2 hover:bg-white/50 dark:hover:bg-white/20',
+                          )}
+                        >
+                          <img
+                            src={imgUrl.replace('{width}x{height}', '50x50')}
+                            alt={name}
+                            className="h-8 w-8 rounded-full mr-5"
+                          />
+                          <span>{name}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </Accordion>
+              </li>
+              <li className="px-9">
+                <FormattedMessage
+                  id="sidebar.nav.all_games"
+                  defaultMessage="All Games"
+                />
+              </li>
+              <li>
+                <Accordion
+                  initialOpen
+                  label={intl.formatMessage({ id: 'sidebar.nav.categories', defaultMessage: 'Categories' })}
+                  className="px-9"
+                >
+                  <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
+                    {categories.map(({ label, icon: Icon, link }) => (
+                      <li key={link} className="w-full">
+                        <NavLink
+                          to={`/category/${link}`}
+                          className={getLinkClasses}
+                        >
+                          {({ isActive }) => (
+                            <>
+                              <Icon
+                                className={classNames(
+                                  'mr-5',
+                                  {
+                                    'text-primary': isActive,
+                                  },
+                                )}
+                              />
+                              <span>{label}</span>
+                            </>
+                          )}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </Accordion>
+              </li>
+              <li className="px-9">
+                <FormattedMessage
+                  id="sidebar.nav.recommended"
+                  defaultMessage="Recommended"
+                />
+              </li>
+              <li className="px-9">
+                <FormattedMessage
+                  id="sidebar.nav.new"
+                  defaultMessage="New!"
+                />
+              </li>
+              <li className="px-9">
+                <FormattedMessage
+                  id="sidebar.nav.most_played"
+                  defaultMessage="Most Played"
+                />
+              </li>
+            </ul>
+          </nav>
+
+          <GameTileSwitch />
+
+          <div className="mt-auto px-9 pb-9 pt-5 flex justify-between items-center">
             <FormattedMessage
-              id="sidebar.logo.beta"
-              defaultMessage="beta"
+              id="sidebar.dark_mode"
+              defaultMessage="Dark Mode"
             />
-          </span>
-        </div>
+            <DarkModeSwitch />
+          </div>
+        </aside>
+      </Transition>
 
-        <nav className="border-b border-black/25 dark:border-white/25 py-6">
-          <ul className="space-y-3 mt-4">
-            <li>
-              <Accordion
-                label={intl.formatMessage({ id: 'sidebar.nav.games', defaultMessage: 'Games' })}
-                className="px-9"
-              >
-                <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
-                  {data?.data?.data.map(({ id, name, box_art_url: imgUrl }) => (
-                    <li key={id} className="w-full">
-                      <Link
-                        to="/"
-                        className={classNames(
-                          'flex items-center',
-                          'pl-9 py-2 hover:bg-white/50 dark:hover:bg-white/20',
-                        )}
-                      >
-                        <img
-                          src={imgUrl.replace('{width}x{height}', '50x50')}
-                          alt={name}
-                          className="h-8 w-8 rounded-full mr-5"
-                        />
-                        <span>{name}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Accordion>
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.all_games"
-                defaultMessage="All Games"
-              />
-            </li>
-            <li>
-              <Accordion
-                initialOpen
-                label={intl.formatMessage({ id: 'sidebar.nav.categories', defaultMessage: 'Categories' })}
-                className="px-9"
-              >
-                <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
-                  {categories.map(({ label, icon: Icon, link }) => (
-                    <li key={link} className="w-full">
-                      <NavLink
-                        to={`/category/${link}`}
-                        className={getLinkClasses}
-                      >
-                        {({ isActive }) => (
-                          <>
-                            <Icon
-                              className={classNames(
-                                'mr-5',
-                                {
-                                  'text-primary': isActive,
-                                },
-                              )}
-                            />
-                            <span>{label}</span>
-                          </>
-                        )}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </Accordion>
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.recommended"
-                defaultMessage="Recommended"
-              />
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.new"
-                defaultMessage="New!"
-              />
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.most_played"
-                defaultMessage="Most Played"
-              />
-            </li>
-          </ul>
-        </nav>
-
-        <GameTileSwitch />
-
-        <div className="mt-auto px-9 pb-9 pt-5 flex justify-between items-center">
-          <FormattedMessage
-            id="sidebar.dark_mode"
-            defaultMessage="Dark Mode"
-          />
-          <DarkModeSwitch />
-        </div>
-      </aside>
-    </Transition>
+    </>
   );
 };
 
