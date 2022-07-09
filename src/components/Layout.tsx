@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       <Sidebar />
 
-      <div className="px-14">
+      <div className="px-14 flex-grow">
         <Header />
 
         <main className="py-8">
