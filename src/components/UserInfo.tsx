@@ -12,7 +12,7 @@ const UserInfo: React.FC = () => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle>
+      <Dropdown.Toggle className="flex">
         <div className="flex items-center">
           <img src={user.profile_image_url} alt="" className="h-10 rounded-md mr-3" />
           {user.display_name}
@@ -20,7 +20,7 @@ const UserInfo: React.FC = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item className="flex">
+        <Dropdown.Item as="div" className="flex">
           <FormattedMessage
             id="header.sidebar"
             defaultMessage="Sidebar"
