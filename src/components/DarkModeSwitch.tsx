@@ -1,23 +1,12 @@
-import useLocalStorage from 'hooks/useLocalStorage';
-import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+
+import { useGlobalContext } from 'context/GlobalContext';
 
 import Switch from 'ui/Switch';
 
 const DarkModeSwitch: React.FC = () => {
   const intl = useIntl();
-  const [isDarkMode, setIsDarkMode] = useLocalStorage(
-    'theme',
-    window.matchMedia('(prefers-color-scheme: dark)').matches,
-  );
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
+  const { isDarkMode, setIsDarkMode } = useGlobalContext();
 
   return (
     <Switch
