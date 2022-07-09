@@ -36,7 +36,8 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/function-component-definition": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "react/jsx-no-useless-fragment": "off"
   },
   "settings": {
     "react": {
