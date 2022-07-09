@@ -12,7 +12,9 @@ const CarouselNext = <T extends React.ElementType = 'button'>({
   const Component = as || 'button';
 
   const handleClick = () => {
-    onClick(currentSlideIndex);
+    if (typeof onClick === 'function') {
+      onClick(currentSlideIndex);
+    }
     nextSlide();
   };
 
