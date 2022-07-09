@@ -11,8 +11,9 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ children }) => {
       as="ul"
       className={classNames(
         'absolute bottom-0 z-50 min-w-full translate-y-full',
-        'px-4 py-1 border border-primary-100 rounded drop-shadow-sm bg-white',
-        'divide-y',
+        'py-1 rounded drop-shadow-sm',
+        'border border-black/25 dark:border-white/25 bg-bg-light dark:bg-bg-dark',
+        'text-text-light-300 dark:text-text-dark-300',
       )}
     >
       {children}

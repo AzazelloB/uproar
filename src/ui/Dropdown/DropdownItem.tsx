@@ -7,30 +7,25 @@ interface DropdownItemProps {
   children: React.ReactNode;
 }
 
-const DropdownItem: React.FC<DropdownItemProps> = <T extends React.ElementType = 'button'>({
+const DropdownItem = <T extends React.ElementType = 'button'>({
   as,
   children,
   ...props
-}: AsProp<T>) => {
+}: AsProp<T, DropdownItemProps>) => {
   const Component = as || 'button';
 
   return (
-    <li className="py-1 text-link">
+    <li className="text-link">
       <Menu.Item>
-        {({ active }) => (
-          <Component
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...props}
-            className={classNames(
-              'block',
-              {
-                'text-primary': active,
-              },
-            )}
-          >
-            {children}
-          </Component>
-        )}
+        <Component
+          {...props}
+          className={classNames(
+            'block px-4 py-2 w-full',
+            'hover:bg-white/50 dark:hover:bg-white/20',
+          )}
+        >
+          {children}
+        </Component>
       </Menu.Item>
     </li>
   );
