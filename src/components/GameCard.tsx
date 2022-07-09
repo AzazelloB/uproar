@@ -5,6 +5,7 @@ import type { Game } from 'api/response';
 
 import Button from 'ui/Button';
 
+import useLocalStorage from 'hooks/useLocalStorage';
 import GameCardSkeleton from './GameCardSkeleton';
 
 interface GameCardProps {
@@ -12,9 +13,21 @@ interface GameCardProps {
 }
 
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
+  const [acceptedChallenges, setAcceptedChallenges] = useLocalStorage<string[]>('acceptedChallenges', []);
+
   if (!game) {
     return <GameCardSkeleton />;
   }
+
+  const isAccepted = acceptedChallenges.includes(game.id);
+
+  const handleClick = (clickedGame: Game) => () => {
+    if (isAccepted) {
+      return;
+    }
+
+    setAcceptedChallenges((prev) => [...prev, clickedGame.id]);
+  };
 
   return (
     <div className="bg-bg-light dark:bg-bg-dark max-w-[250px] h-full rounded-md flex flex-col">
@@ -37,11 +50,18 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
         </p>
 
         <div className="p-4 pb-0 mt-auto border-t border-black/25 dark:border-white/25 flex justify-end">
-          <Button>
-            <FormattedMessage
-              id="game_card.accept"
-              defaultMessage="Accept"
-            />
+          <Button onClick={handleClick(game)} disabled={isAccepted}>
+            {isAccepted ? (
+              <FormattedMessage
+                id="game_card.accepted"
+                defaultMessage="Accepted"
+              />
+            ) : (
+              <FormattedMessage
+                id="game_card.accept"
+                defaultMessage="Accept"
+              />
+            )}
           </Button>
         </div>
       </div>
