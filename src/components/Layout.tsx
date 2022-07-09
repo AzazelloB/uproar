@@ -1,7 +1,5 @@
 import classNames from 'classnames';
 
-import { SIDEBAR_WIDTH } from 'constants/layout';
-
 import Header from './Header';
 import Sidebar from './Sidebar';
 
@@ -19,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       <Sidebar />
 
-      <div className="px-14" style={{ width: `calc(100% - ${SIDEBAR_WIDTH}px)` }}>
+      <div className="px-14">
         <Header />
 
         <main className="py-8">

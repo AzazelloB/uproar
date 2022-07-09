@@ -9,6 +9,7 @@ interface DropdownItemProps {
 
 const DropdownItem = <T extends React.ElementType = 'button'>({
   as,
+  className,
   children,
   ...props
 }: AsProp<T, DropdownItemProps>) => {
@@ -22,6 +23,7 @@ const DropdownItem = <T extends React.ElementType = 'button'>({
           className={classNames(
             'block px-4 py-2 w-full',
             'hover:bg-white/50 dark:hover:bg-white/20',
+            className,
           )}
         >
           {children}

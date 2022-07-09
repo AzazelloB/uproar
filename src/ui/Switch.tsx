@@ -5,9 +5,12 @@ interface SwitchProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
   srOnly?: string;
+  className?: string;
 }
 
-const Switch: React.FC<SwitchProps> = ({ checked, onChange, srOnly }) => {
+const Switch: React.FC<SwitchProps> = ({
+  checked, onChange, srOnly, className,
+}) => {
   return (
     <HeadlessSwitch
       checked={checked}
@@ -20,6 +23,7 @@ const Switch: React.FC<SwitchProps> = ({ checked, onChange, srOnly }) => {
           'bg-primary': checked,
           'bg-black/25': !checked,
         },
+        className,
       )}
     >
       {srOnly && <span className="sr-only">{srOnly}</span>}
