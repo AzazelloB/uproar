@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { GiBroadsword, GiChessRook } from 'react-icons/gi';
 import { IoIosRocket } from 'react-icons/io';
@@ -7,6 +7,7 @@ import { HiPuzzle } from 'react-icons/hi';
 import { FaVolleyballBall } from 'react-icons/fa';
 import { SiNintendogamecube } from 'react-icons/si';
 
+import useTopGames from 'api/topGames';
 import { SIDEBAR_WIDTH } from 'constants/layout';
 
 import Accordion from 'ui/Accordion';
@@ -16,6 +17,9 @@ import GameTileSwitch from './GameTileSwitch';
 
 const Sidebar: React.FC = () => {
   const intl = useIntl();
+  const { data } = useTopGames({
+    first: 5,
+  });
 
   const categories = [
     {
@@ -53,7 +57,7 @@ const Sidebar: React.FC = () => {
   const getLinkClasses = ({ isActive }: { isActive: boolean }) => {
     return classNames(
       'flex items-center',
-      'pl-14 py-2 hover:bg-white/50 dark:hover:bg-white/20 block border-l-4 ',
+      'pl-14 py-2 hover:bg-white/50 dark:hover:bg-white/20 block border-l-4',
       {
         'text-text-light dark:text-text-dark bg-black/5 dark:bg-white/5 border-primary': isActive,
         'border-transparent': !isActive,
@@ -89,70 +93,91 @@ const Sidebar: React.FC = () => {
       </div>
 
       <nav className="border-b border-black/25 dark:border-white/25 py-6">
-        <Accordion
-          initialOpen
-          label={intl.formatMessage({ id: 'sidebar.nav.games', defaultMessage: 'Games' })}
-          className="px-9"
-        >
-          <ul className="space-y-3 mt-4">
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.all_games"
-                defaultMessage="All Games"
-              />
-            </li>
-            <li>
-              <Accordion
-                initialOpen
-                label={intl.formatMessage({ id: 'sidebar.nav.categories', defaultMessage: 'Categories' })}
-                className="px-9"
-              >
-                <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
-                  {categories.map(({ label, icon: Icon, link }) => (
-                    <li key={link} className="w-full">
-                      <NavLink
-                        to={`/category/${link}`}
-                        className={getLinkClasses}
-                      >
-                        {({ isActive }) => (
-                          <>
-                            <Icon
-                              className={classNames(
-                                'mr-5',
-                                {
-                                  'text-primary': isActive,
-                                },
-                              )}
-                            />
-                            <span>{label}</span>
-                          </>
-                        )}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </Accordion>
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.recommended"
-                defaultMessage="Recommended"
-              />
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.new"
-                defaultMessage="New!"
-              />
-            </li>
-            <li className="px-9">
-              <FormattedMessage
-                id="sidebar.nav.most_played"
-                defaultMessage="Most Played"
-              />
-            </li>
-          </ul>
-        </Accordion>
+        <ul className="space-y-3 mt-4">
+          <li>
+            <Accordion
+              label={intl.formatMessage({ id: 'sidebar.nav.games', defaultMessage: 'Games' })}
+              className="px-9"
+            >
+              <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
+                {data?.data?.data.map(({ id, name, box_art_url: imgUrl }) => (
+                  <li key={id} className="w-full">
+                    <Link
+                      to="/"
+                      className={classNames(
+                        'flex items-center',
+                        'pl-9 py-2 hover:bg-white/50 dark:hover:bg-white/20',
+                      )}
+                    >
+                      <img
+                        src={imgUrl.replace('{width}x{height}', '50x50')}
+                        alt={name}
+                        className="h-8 w-8 rounded-full mr-5"
+                      />
+                      <span>{name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Accordion>
+          </li>
+          <li className="px-9">
+            <FormattedMessage
+              id="sidebar.nav.all_games"
+              defaultMessage="All Games"
+            />
+          </li>
+          <li>
+            <Accordion
+              initialOpen
+              label={intl.formatMessage({ id: 'sidebar.nav.categories', defaultMessage: 'Categories' })}
+              className="px-9"
+            >
+              <ul className="py-4 text-text-light-300 dark:text-text-dark-300">
+                {categories.map(({ label, icon: Icon, link }) => (
+                  <li key={link} className="w-full">
+                    <NavLink
+                      to={`/category/${link}`}
+                      className={getLinkClasses}
+                    >
+                      {({ isActive }) => (
+                        <>
+                          <Icon
+                            className={classNames(
+                              'mr-5',
+                              {
+                                'text-primary': isActive,
+                              },
+                            )}
+                          />
+                          <span>{label}</span>
+                        </>
+                      )}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </Accordion>
+          </li>
+          <li className="px-9">
+            <FormattedMessage
+              id="sidebar.nav.recommended"
+              defaultMessage="Recommended"
+            />
+          </li>
+          <li className="px-9">
+            <FormattedMessage
+              id="sidebar.nav.new"
+              defaultMessage="New!"
+            />
+          </li>
+          <li className="px-9">
+            <FormattedMessage
+              id="sidebar.nav.most_played"
+              defaultMessage="Most Played"
+            />
+          </li>
+        </ul>
       </nav>
 
       <GameTileSwitch />
