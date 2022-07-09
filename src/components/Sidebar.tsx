@@ -9,13 +9,14 @@ import { FaVolleyballBall } from 'react-icons/fa';
 import { SiNintendogamecube } from 'react-icons/si';
 
 import useTopGames from 'api/topGames';
-import { SIDEBAR_WIDTH } from 'constants/layout';
 import { useGlobalContext } from 'context/GlobalContext';
 
 import Accordion from 'ui/Accordion';
 
 import DarkModeSwitch from './DarkModeSwitch';
 import GameTileSwitch from './GameTileSwitch';
+
+const sideBarWidthClass = 'w-[280px]';
 
 const Sidebar: React.FC = () => {
   const intl = useIntl();
@@ -72,12 +73,12 @@ const Sidebar: React.FC = () => {
     <>
       <Transition
         show={showSidebar}
-        className={`w-[${SIDEBAR_WIDTH}px] h-full flex-shrink-0`}
+        className={`${sideBarWidthClass} h-full flex-shrink-0`}
         enter="transition-all duration-75"
         enterFrom="w-0"
-        enterTo={`w-[${SIDEBAR_WIDTH}px]`}
+        enterTo={sideBarWidthClass}
         leave="transition-all duration-150"
-        leaveFrom={`w-[${SIDEBAR_WIDTH}px]`}
+        leaveFrom={sideBarWidthClass}
         leaveTo="w-0"
       />
 
@@ -92,7 +93,7 @@ const Sidebar: React.FC = () => {
         leaveTo="-left-full"
       >
         <aside className={classNames(
-          `h-full w-[${SIDEBAR_WIDTH}px] overflow-y-auto`,
+          `h-full ${sideBarWidthClass} overflow-y-auto`,
           'flex flex-col flex-shrink-0 bg-bg-light dark:bg-bg-dark',
         )}
         >
