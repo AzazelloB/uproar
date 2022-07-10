@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { GiBroadsword, GiChessRook } from 'react-icons/gi';
 import { IoIosRocket } from 'react-icons/io';
 import { HiPuzzle } from 'react-icons/hi';
-import { FaVolleyballBall } from 'react-icons/fa';
+import { FaTimes, FaVolleyballBall } from 'react-icons/fa';
 import { SiNintendogamecube } from 'react-icons/si';
 
 import useTopGames from 'api/topGames';
@@ -20,7 +20,7 @@ const sideBarWidthClass = 'w-[280px]';
 
 const Sidebar: React.FC = () => {
   const intl = useIntl();
-  const { showSidebar } = useGlobalContext();
+  const { showSidebar, setShowSidebar } = useGlobalContext();
   const { data } = useTopGames({
     first: 5,
   });
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <Transition
-        show={showSidebar}
+        show={showSidebar && window.innerWidth > 960}
         className={`${sideBarWidthClass} h-full flex-shrink-0`}
         enter="transition-all duration-75"
         enterFrom="w-0"
@@ -80,6 +80,18 @@ const Sidebar: React.FC = () => {
         leave="transition-all duration-150"
         leaveFrom={sideBarWidthClass}
         leaveTo="w-0"
+      />
+
+      <Transition
+        show={showSidebar && window.innerWidth < 960}
+        onClick={() => setShowSidebar(false)}
+        className="fixed inset-0 z-10 bg-gray-500 bg-opacity-75 transition-opacity"
+        enter="transition-all duration-75"
+        enterFrom="transform opacity-0"
+        enterTo="transform opacity-100"
+        leave="transition-all duration-150"
+        leaveFrom="transform opacity-100"
+        leaveTo="transform opacity-0"
       />
 
       <Transition
@@ -98,6 +110,14 @@ const Sidebar: React.FC = () => {
         )}
         >
           <div className="flex items-center flex-shrink-0 h-16 border-b border-black/25 dark:border-white/25 px-9">
+            <button
+              type="button"
+              onClick={() => setShowSidebar(false)}
+              className="mr-4"
+            >
+              <FaTimes />
+            </button>
+
             <img
               src={`${process.env.PUBLIC_URL}/images/logo.svg`}
               alt=""

@@ -22,6 +22,21 @@ function useGlobalState() {
     }
   }, [isDarkMode]);
 
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth < 960) {
+        setShowSidebar(false);
+      }
+    };
+
+    onResize();
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, [setShowSidebar]);
+
   return {
     locale,
     setLocale,

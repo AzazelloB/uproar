@@ -3,11 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { useAuthContext } from 'context/AuthContext';
 
 import Dropdown from 'ui/Dropdown';
-import Switch from 'ui/Switch';
-import { useGlobalContext } from 'context/GlobalContext';
 
 const UserInfo: React.FC = () => {
-  const { showSidebar, setShowSidebar } = useGlobalContext();
   const { user, logout } = useAuthContext();
 
   return (
@@ -20,17 +17,6 @@ const UserInfo: React.FC = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item as="div" className="flex">
-          <FormattedMessage
-            id="header.sidebar"
-            defaultMessage="Sidebar"
-          />
-          <Switch
-            checked={showSidebar}
-            onChange={() => setShowSidebar((prev) => !prev)}
-            className="ml-4"
-          />
-        </Dropdown.Item>
         <Dropdown.Item onClick={logout}>
           <FormattedMessage
             id="header.logout"
