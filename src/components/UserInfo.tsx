@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import { GoTriangleUp, GoTriangleDown } from 'react-icons/go';
 
 import { useAuthContext } from 'context/AuthContext';
 
@@ -9,21 +10,26 @@ const UserInfo: React.FC = () => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle className="flex">
-        <div className="flex items-center">
-          <img src={user.profile_image_url} alt="" className="h-10 rounded-md mr-3" />
-          {user.display_name}
-        </div>
-      </Dropdown.Toggle>
+      {({ open }) => (
+        <>
+          <Dropdown.Toggle className="flex">
+            <div className="flex items-center">
+              <img src={user.profile_image_url} alt="" className="h-10 rounded-md" />
+              <span className="mx-3">{user.display_name}</span>
+              {open ? <GoTriangleUp size={12} /> : <GoTriangleDown size={12} />}
+            </div>
+          </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item onClick={logout}>
-          <FormattedMessage
-            id="header.logout"
-            defaultMessage="Logout"
-          />
-        </Dropdown.Item>
-      </Dropdown.Menu>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={logout}>
+              <FormattedMessage
+                id="header.logout"
+                defaultMessage="Logout"
+              />
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </>
+      )}
     </Dropdown>
   );
 };

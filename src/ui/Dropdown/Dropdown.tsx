@@ -11,15 +11,23 @@ interface DropdownComponents {
   Item: typeof DropdownItem,
 }
 
+interface MenuRenderPropArg {
+  open: boolean,
+}
+
 interface DropdownProps {
   className?: string;
-  children: React.ReactNode;
+  children: React.ReactNode | ((args: MenuRenderPropArg) => React.ReactNode);
 }
 
 const Dropdown: React.FC<DropdownProps> & DropdownComponents = ({ children, className }) => {
   return (
     <Menu as="div" className={classNames('relative', className)}>
-      {children}
+      {(args) => (
+        <>
+          {typeof children === 'function' ? children(args) : children}
+        </>
+      )}
     </Menu>
   );
 };
