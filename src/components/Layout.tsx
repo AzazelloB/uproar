@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import Header from './Header';
-import Sidebar from './Sidebar';
+import Sidebar, { sideBarWidth } from './Sidebar';
 
 export interface LayoutProps {
   children: JSX.Element,
@@ -17,7 +17,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       <Sidebar />
 
-      <div className="px-14 flex-grow">
+      <div
+        className="px-14 flex-grow"
+        style={{ width: `calc(100% - ${sideBarWidth}px)` }}
+      >
         <Header />
 
         <main className="py-8">

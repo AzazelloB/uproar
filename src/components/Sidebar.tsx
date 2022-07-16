@@ -16,6 +16,9 @@ import Accordion from 'ui/Accordion';
 import DarkModeSwitch from './DarkModeSwitch';
 import GameTileSwitch from './GameTileSwitch';
 
+// should be the same and should be separate.
+// Because tailwind cannot parse dynamic classnames
+export const sideBarWidth = 280;
 const sideBarWidthClass = 'w-[280px]';
 
 const Sidebar: React.FC = () => {

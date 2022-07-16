@@ -1,7 +1,7 @@
+import { Children, useEffect } from 'react';
 import NukaCarousel from 'nuka-carousel';
 
 import { useCarouselContext } from 'context/CarouselContext';
-import { Children, useEffect } from 'react';
 
 export interface CarouselBodyProps {
   children: React.ReactNode;
