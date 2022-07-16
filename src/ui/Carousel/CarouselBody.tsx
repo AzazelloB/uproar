@@ -5,9 +5,10 @@ import { useCarouselContext } from 'context/CarouselContext';
 
 export interface CarouselBodyProps {
   children: React.ReactNode;
+  slidesToShow?: number;
 }
 
-const CarouselBody: React.FC<CarouselBodyProps> = ({ children }) => {
+const CarouselBody: React.FC<CarouselBodyProps> = ({ children, slidesToShow }) => {
   const { currentSlideIndex, setTotalSlidesCount } = useCarouselContext();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const CarouselBody: React.FC<CarouselBodyProps> = ({ children }) => {
   return (
     <NukaCarousel
       withoutControls
-      slidesToShow={4}
+      slidesToShow={slidesToShow}
       slideIndex={currentSlideIndex}
       cellSpacing={12}
       speed={200}

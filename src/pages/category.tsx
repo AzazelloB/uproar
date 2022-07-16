@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import type { Game } from 'api/response';
@@ -8,11 +8,38 @@ import { useGlobalContext } from 'context/GlobalContext';
 import GamesGrid from 'components/GamesGrid';
 import GamesList from 'components/GamesList';
 
+const getAreaWidth = (area: HTMLElement | null) => {
+  if (area) {
+    return area.getBoundingClientRect().width;
+  }
+
+  return 0;
+};
+
 const CategoryPage: React.FC = () => {
   const { category } = useParams();
   const { gameTileMode } = useGlobalContext();
 
-  const cardsPerPage = gameTileMode === 'grid' ? 8 : 4;
+  const ref = useRef<HTMLDivElement>(null);
+  const [areaWidth, setAreaWidth] = useState(getAreaWidth(ref.current));
+
+  // assumint that card width is 250px
+  const cardsInLine = Math.floor(areaWidth / 250);
+  const cardsPerPage = gameTileMode === 'grid' ? cardsInLine * 4 : cardsInLine;
+
+  useEffect(() => {
+    setAreaWidth(getAreaWidth(ref.current));
+  }, [ref]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setAreaWidth(getAreaWidth(ref.current));
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const {
     data,
@@ -47,9 +74,15 @@ const CategoryPage: React.FC = () => {
     prefilledData = data!;
   }
 
-  return gameTileMode === 'grid'
-    ? <GamesGrid data={prefilledData} fetchNextPage={fetchNextPage} hasNextPage={!!hasNextPage} />
-    : <GamesList data={prefilledData} fetchNextPage={fetchNextPage} cardsPerPage={cardsPerPage} />;
+  return (
+    <div ref={ref}>
+      {
+        gameTileMode === 'grid'
+          ? <GamesGrid data={prefilledData} fetchNextPage={fetchNextPage} hasNextPage={!!hasNextPage} />
+          : <GamesList data={prefilledData} fetchNextPage={fetchNextPage} cardsPerPage={cardsPerPage} />
+      }
+    </div>
+  );
 };
 
 export default CategoryPage;

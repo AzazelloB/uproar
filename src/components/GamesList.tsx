@@ -29,7 +29,7 @@ const GamesList: React.FC<GamesListProps> = ({ data, fetchNextPage, cardsPerPage
         <Carousel.Next as={Button} variant="secondary" icon={FiChevronRight} onClick={handleNext} />
       </div>
 
-      <Carousel.Body>
+      <Carousel.Body slidesToShow={cardsPerPage}>
         {games.map((game, i) => (
           <GameCard key={game?.id || i} game={game} />
         ))}
